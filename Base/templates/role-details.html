@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'mStyle/role_details.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+  {% if page == 'student' %}
+
+  <div id="form1">
+  
+    
+    <form id="form1" action="" method="POST">
+      <header id="in_head">
+        <h2 class="header_in">Professional Details</h2>
+       </header>
+
+
+      {% csrf_token %}
+
+
+      {% comment %}student data input form{% endcomment %}
+  
+      <input class="input_role"  type="text" name="institute" placeholder="institute" />
+      <input class="input_role" type="text" name="subject" placeholder="subject" />
+      <input class="input_role" type="text" name="interest" placeholder="interest" />
+      <input class="input_role" type="text" name="courseDuration" placeholder="courseDuration" />
+
+      <button id="submit"type="submit">Submit</button>
+    </form>
+
+    {% comment %}teacher data input form{% endcomment %}
+    {% elif page == 'teacher' %}
+   
+    <form id="form1" action="" method="POST">
+      <header id="in_head">
+        <h2 class="header_in">Professional Details</h2>
+        
+       </header>
+      {% csrf_token %}
+      <input class="input_role" class="input_role" type="text" name="location" placeholder="location" />
+      <input class="input_role"type="text" name="dptOfTeaching" placeholder="dptOfTeaching" />
+      <input class="input_role"type="text" name="qualification" placeholder="qualification" />
+
+      <button id="submit"type="submit">Submit</button>
+    </form>
+
+    {% comment %}mess details input form{% endcomment %}
+    {% elif page == 'owner' %}
+
+    <form id="form1" action="" method="POST">
+      <header id="in_head">
+        <h2 class="header_in">Professional Details</h2>
+       </header>
+      {% csrf_token %}
+      <input class="input_role"  type="text" name="mess_name" placeholder="mess Name" />
+      <input class="input_role" type="text" name="rent" placeholder="rent " />
+      <input class="input_role" type="text" name="bedAvailable" placeholder="bedAvailable" />
+      <input class="input_role" type="text" name="address" placeholder="address" />
+
+      <button id="submit"type="submit">Submit</button>
+    </form>
+
+
+  </div>
+
+
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block body %}
+  <style>
+    span {
+      color: green;
+      font-weight: 700;
+    }
+    .dpProfile{
+      height:100px;
+      width:100px;
+    }
+  </style>
+
+  {% if request.user.is_authenticated %}
+    <div class="main">
+      Hello <span>{{ user.username|capfirst }}</span>
+      <br />
+      I am a <span>{{ user.profile.role|capfirst }}</span>
+      <br />
+      Phone no <span>{{ user.profile.phNo }}</span>
+      <br />
+      Social media link <span>{{ user.profile.socialId }}</span>
+      <br />
+      About me - <span>{{ user.profile.desc }}</span>
+      <br />
+      <img src="{{dp.url}}" alt="" class="dpProfile">
+      <br />
+
+      <h3>Role details</h3>
+
+      {% if user.profile.role == 'teacher' %}
+        Teacher Location is <span>{{ teacher.location|capfirst }}</span>
+        <br />
+        dptOfTeaching is <span>{{ teacher.dptOfTeaching|upper }}</span>
+        <br />
+        Teacher Location is <span>{{ teacher.qualification|upper }}</span>
+        <br />
+
+        {% elif user.profile.role == 'student' %}Student Institute is <span>{{ student.institute|capfirst }}</span>
+        <br />
+        Student subject is <span>{{ student.subject|upper }}</span>
+        <br />
+        interest in <span>{{ student.interest }}</span>
+        <br />
+        Student courseDuration is <span>{{ student.courseDuration }}</span>
+        <br />
+
+        {% elif user.profile.role == 'owner' %}Owner of Mess <span>{{ owner.mess_name|capfirst }}</span>
+        <br />
+        Room rent <span>{{ owner.rent }}</span>
+        <br />
+        bedAvailable<span>{{ owner.bedAvailable }}</span>
+        <br />
+        address <span>{{ owner.address }}</span>
+        <br />
+      {% endif %}
+    </div>
+  {% else %}
+
+
+{% comment %} image slider starts from hare {% endcomment %}
+
+<div class="slider__container">
+  <div class="slide">
+    <ul class="slideImages__container">
+      <li class="slideImage"><img src="media/sliderImages/first_1.jpg" alt="sliderImages"></li>
+      <li class="slideImage"><img src="media/sliderImages/first_2.jpg" alt="sliderImages"></li>
+      <li class="slideImage"><img src="media/sliderImages/first_3.jpg" alt="sliderImages"></li>
+      <li class="slideImage"><img src="media/sliderImages/first_4.jpg" alt="sliderImages"></li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% comment %} image slider ends hare {% endcomment %}
+
+
+
+
+    {% comment %} <div class="welcome">
+      <h3>Welcome page</h3>
+      <h3>Reviews</h3>
+      <hr />
+      {% for rv in reviews %}
+        <div>
+          <h4>{{ rv.poster }}</h4>
+          <p>{{ rv.review }}</p>
+          <hr />
+        </div>
+      {% endfor %}
+    </div> {% endcomment %}
+  {% endif %}
+{% endblock %}
